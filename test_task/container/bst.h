@@ -121,14 +121,21 @@ private:
 		else
 		{
 			std::cout
-				<< "["
-				<< aNode->size
-				<< "]:"
-				<< aNode->data
-				<< "|"
+				<< "|{"
 				<< (aNode->left ? "/" : "_")
 				<< (aNode->right ? "\\" : "_")
-				<< "| ";
+				<< "} size:"
+				<< std::setw(3)
+				<< std::setiosflags(std::ios::right)
+				<< aNode->size
+				<< " data:["
+				<< std::hex;
+				//<< aNode->data
+				for(const auto i : aNode->data)
+				{
+					std::cout << +static_cast<uint8_t>(i) << ", ";
+				}
+				std::cout << "\b\b]|\r\n";
 
 			if(aNewLine)
 				std::cout << std::endl;
